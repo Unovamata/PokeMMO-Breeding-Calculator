@@ -1,0 +1,246 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Bold.ttf') format('truetype'); /* Adjust path as needed */
+    font-weight: normal;  /* Use this font weight */
+    font-style: normal;   /* Use this font style */
+}
+
+body {
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    background-image: url("img/tree-bg.png");
+}
+
+.header {
+    height: 8vh;
+    background-image: url("img/header.png");
+    background-repeat: repeat;
+    background-size: 14px 400px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 26vh;
+    padding-left: 1vh;
+}
+
+.flex-container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-section {
+    flex: 1;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+    background-image: url("img/tree-bg.png");
+}
+
+.right-section {
+    flex: 0.5;
+    background-color: transparent;
+    box-sizing: border-box;
+    border-color: #000;
+    align-items: center;
+}
+
+.container {
+    transform: translateY(-15px);
+}
+
+.breeding-container {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.table, .center {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.table th, .table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #f2f2f2; /* Light gray background for headers */
+}
+
+.stats-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+caption {
+    font-weight: bold;
+    margin: 10px 0px 10px 0px;
+}
+
+.braces-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.braces-table input {
+    width: 30px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Disable the default spinner */
+    margin: 0;                /* Remove margin */
+}
+
+.separator {
+    padding-bottom: 15px;
+}
+
+#calculate button {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    background: linear-gradient(to bottom, #535a60, #3c4247);
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+}
+
+/*########################################################################*/
+
+/* Trapezoid Container */
+.trapezoid-container {
+    display: flex;
+    margin-left: 10px;
+}
+
+/* Trapezoid Styles */
+.trapezoid {
+    width: 80px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.trapezoid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    border-radius: 15px;
+    transform: perspective(200px) rotateX(30deg);
+}
+
+.trapezoid img {
+    z-index: 1;
+    padding-bottom: 5px;
+}
+
+/*########################################################################*/
+
+/* Tree */
+
+#tree {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#tree ul {
+    padding-top: 20px;
+    position: relative;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+#tree li {
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+/* Drawing the connecting lines */
+#tree li::before, #tree li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 2px solid #ccc;
+    width: 50%;
+    height: 20px;
+}
+
+#tree li::after {
+    right: auto;
+    left: 50%;
+    border-left: 2px solid #ccc;
+}
+
+/* Connecting parent to child */
+#tree li:only-child::after, #tree li:only-child::before {
+    display: none;
+}
+
+#tree li:only-child {
+    padding-top: 0;
+}
+
+#tree li:first-child::before, #tree li:last-child::after {
+    border: 0 none;
+}
+
+#tree li:last-child::before {
+    border-right: 2px solid #ccc;
+}
+
+#tree li:first-child::after {
+    border-left: 2px solid #ccc;
+}
+
+#tree ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 2px solid #ccc;
+    width: 0;
+    height: 20px;
+}
+
+#tree li div {
+    border: 2px solid #ccc;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #666;
+    display: inline-block;
+    transition: all 0.5s;
+}
+
+#tree li div:hover {
+    background: #c8e4f8;
+    color: #000;
+    border: 2px solid #94a0b4;
+}

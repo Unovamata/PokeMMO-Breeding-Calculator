@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Tree</title>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+</head>
+<body>
+
+<div class="header">
+    <img class=logo src="img/logo.png">
+</div>
+<div class="flex-container">
+    <div class="left-section">
+        <div id="tree">
+            <ul>
+                <li>
+                    <div>Parent</div>
+                    <ul>
+                        <li>
+                            <div>Child 1</div>
+                        </li>
+                        <li>
+                            <div>Child 2</div>
+                            <ul>
+                                <li>
+                                    <div>Grandchild 1</div>
+                                </li>
+                                <li>
+                                    <div>Grandchild 2</div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="trapezoid-container">
+            <div class="trapezoid">
+                <img src="stats/weight.png">
+            </div>
+            <div class="trapezoid">
+                <img src="stats/weight.png">
+            </div>
+        </div>
+        
+        <div class="container breeding-container">
+            <table class="table">
+                <caption>Stats to Breed</caption>
+                <thead>
+                    <tr>
+                        <th>Nat</th>
+                        <th>HP</th>
+                        <th>Atk</th>
+                        <th>Def</th>
+                        <th>Sp.Atk</th>
+                        <th>Sp.Def</th>
+                        <th>Spd</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="table braces-table">
+                <caption>Braces in Inventory</caption>
+                <thead>
+                    <tr>
+                        <th><img src="stats/everstone.png"></th>
+                        <th><img src="stats/weight.png"></th>
+                        <th><img src="stats/power.png"></th>
+                        <th><img src="stats/belt.png"></th>
+                        <th><img src="stats/lens.png"></th>
+                        <th><img src="stats/band.png"></th>
+                        <th><img src="stats/anklet.png"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" min="0" max="99"></td>
+                        <td><input type="number" min="0" max="99"></td>
+                        <td><input type="number" min="0" max="99"></td>
+                        <td><input type="number" min="0" max="99"></td>
+                        <td><input type="number" min="0" max="99"></td>
+                        <td><input type="number" min="0" max="99"></td>
+                        <td><input type="number" min="0" max="99"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table braces-table">
+                <caption>Battle Points Available</caption>
+                <thead>
+                    <tr>
+                        <th><img src="stats/battlepoints.png"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" min="0" max="999999" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="separator"></div>
+        </div>
+
+        <div class="breeding-container">
+            <div class="center" id="calculate">
+                <button>Calculate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
