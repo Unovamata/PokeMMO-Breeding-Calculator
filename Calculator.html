@@ -39,15 +39,65 @@
     </div>
     <div class="right-section">
         <div class="trapezoid-container">
-            <div class="trapezoid">
+            <div class="trapezoid" id="breeders">
+                <img src="stats/egg.png">
+            </div>
+            <div class="trapezoid" id="powers">
                 <img src="stats/weight.png">
             </div>
-            <div class="trapezoid">
-                <img src="stats/weight.png">
+            <div class="trapezoid" id="prices">
+                <img src="stats/poke.png">
             </div>
         </div>
+
+        <div class="container" id="gender-container">
+            <table class="table">
+                <caption>Breeders Prices (1x31)</caption>
+                <thead>
+                    <tr>
+                        <th><img src="stats/Poke.png"></th>
+                        <th><img src="stats/female.png"></th>
+                        <th><img src="stats/male.png"> <b style="font-size: 32px;">/</b> <img src="stats/egg.png"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>HP</th>
+                        <td><input value="0"></td>
+                        <td><input value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Atk</th>
+                        <td><input value="0"></td>
+                        <td><input value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Def</th>
+                        <td><input value="0"></td>
+                        <td><input value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Sp.Atk</th>
+                        <td><input value="0"></td>
+                        <td><input value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Sp.Def</th>
+                        <td><input value="0"></td>
+                        <td><input value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Spd</th>
+                        <td><input value="0"></td>
+                        <td><input value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="separator"></div>
+        </div>
         
-        <div class="container breeding-container">
+        <div class="container" id="powers-container">
             <table class="table">
                 <caption>Stats to Breed</caption>
                 <thead>
@@ -75,7 +125,7 @@
             </table>
             
             <table class="table braces-table">
-                <caption>Braces in Inventory</caption>
+                <caption>Items in Inventory</caption>
                 <thead>
                     <tr>
                         <th><img src="stats/everstone.png"></th>
@@ -89,27 +139,29 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="number" min="0" max="99"></td>
-                        <td><input type="number" min="0" max="99"></td>
-                        <td><input type="number" min="0" max="99"></td>
-                        <td><input type="number" min="0" max="99"></td>
-                        <td><input type="number" min="0" max="99"></td>
-                        <td><input type="number" min="0" max="99"></td>
-                        <td><input type="number" min="0" max="99"></td>
+                        <td><input type="number" min="0" max="999" value="0"></td>
+                        <td><input type="number" min="0" max="999" value="0"></td>
+                        <td><input type="number" min="0" max="999" value="0"></td>
+                        <td><input type="number" min="0" max="999" value="0"></td>
+                        <td><input type="number" min="0" max="999" value="0"></td>
+                        <td><input type="number" min="0" max="999" value="0"></td>
+                        <td><input type="number" min="0" max="999" value="0"></td>
                     </tr>
                 </tbody>
             </table>
 
             <table class="table braces-table">
-                <caption>Battle Points Available</caption>
+                <caption>Battle Points Available & Market Prices</caption>
                 <thead>
                     <tr>
                         <th><img src="stats/battlepoints.png"></th>
+                        <th><img src="stats/everstone.png"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="number" min="0" max="999999" value="0"></td>
+                        <td><input class="larger-input" type="number" min="0" max="999999" value="0"></td>
+                        <td><input class="larger-input" type="number" min="0" max="999999" value="0"></td>
                     </tr>
                 </tbody>
             </table>
@@ -117,13 +169,51 @@
             <div class="separator"></div>
         </div>
 
-        <div class="breeding-container">
+        <div class="container" id="prices-container">
+            <table class="table">
+                <caption>Grand Total</caption>
+                <thead>
+                    <tr>
+                        <th>Investment</th>
+                        <th><img src="stats/poke.png"></th>
+                        <th>Needed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Breeders</th>
+                        <td><input value="0"></td>
+                        <td><input class="smaller-input" value="0" min="0" max="99"></td>
+                    </tr>
+                    <tr>
+                        <th>Everstones</th>
+                        <td><input value="0"></td>
+                        <td><input class="smaller-input" value="0" min="0" max="99"></td>
+                    </tr>
+                    <tr>
+                        <th>Braces</th>
+                        <td><input value="0"></td>
+                        <td><input class="smaller-input" value="0" min="0" max="99"></td>
+                    </tr>
+                    <tr>
+                        <th><img src="stats/poke.png"></th>
+                        <th colspan="2"><input value="0"></th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="separator"></div>
+        </div>
+
+        <div class="container">
             <div class="center" id="calculate">
                 <button>Calculate</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="calculator.js"></script>
 
 </body>
 </html>
