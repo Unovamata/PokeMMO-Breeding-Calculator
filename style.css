@@ -52,12 +52,8 @@ body {
     margin-bottom: 10px;
     color: white;
 
-    background: rgba(255, 255, 255, 0.2);
+    background: #3a3e42;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(0, 18, 34, 0.5)
 }
 
 .container img {
@@ -87,8 +83,9 @@ body {
 }
 
 .table th {
-    background-color: #3d4348;
+    background-color: #262b2f;
 }
+
 
 .stats-table {
     width: 90%;
@@ -129,6 +126,13 @@ input[type=number]::-webkit-outer-spin-button {
     height: 40px;
     border-radius: 10px;
     border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease; /* Smooth transition */
+}
+
+#calculate button:hover {
+    background: linear-gradient(to top, #535a60, #3c4247); /* Reverse gradient on hover */
+    transform: scale(1.03); /* Slightly grow the button */
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3), 0px 0px 5px rgba(255, 255, 255, 0.5); /* Subtle gradient shadow */
 }
 
 input {
@@ -181,6 +185,13 @@ input {
     background: #ffffff;
     border-radius: 15px;
     transform: perspective(200px) rotateX(30deg);
+
+    background: linear-gradient(to bottom, #535a60, #3c4247);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 18, 34, 0.5)
 }
 
 .trapezoid img {
@@ -212,7 +223,6 @@ input {
 
 #tree li {
     float: left;
-    text-align: center;
     list-style-type: none;
     position: relative;
     padding: 20px 5px 0 5px;
@@ -271,15 +281,68 @@ input {
 
 #tree li div {
     border: 2px solid #ccc;
-    padding: 5px 10px;
     text-decoration: none;
-    color: #666;
+    color: #000;
     display: inline-block;
     transition: all 0.5s;
 }
 
 #tree li div:hover {
     background: #c8e4f8;
-    color: #000;
     border: 2px solid #94a0b4;
+}
+
+/*########################################################################*/
+
+.box {
+    border: 1px solid #000;
+    width: 45px;
+    height: 45px;
+    box-sizing: border-box;
+    line-height: 45px;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+:root {
+    --gradient-opacity: 0.8; /* Adjust this value as needed (0 to 1) */
+    --percentage: 90%;
+}
+
+.item {
+    background: radial-gradient(circle, transparent 0%, rgba(37, 41, 45, var(--gradient-opacity)) var(--percentage));
+}
+
+.ivs {
+    background: radial-gradient(circle, transparent 0%, rgb(255, 153, 51, var(--gradient-opacity)) var(--percentage));
+}
+
+.nature {
+    background: radial-gradient(circle, transparent 0%, rgba(33, 218, 255, var(--gradient-opacity)) var(--percentage));
+}
+
+.hp {
+    background: radial-gradient(circle, transparent 0%, rgba(0, 176, 80, var(--gradient-opacity)) var(--percentage));
+}
+
+.attack {
+    background: radial-gradient(circle, transparent 0%, rgba(249, 2, 6, var(--gradient-opacity)) var(--percentage));
+}
+
+.defense {
+    background: radial-gradient(circle, transparent 0%, rgba(198, 89, 17, var(--gradient-opacity)) var(--percentage));
+}
+
+.spatk {
+    background: radial-gradient(circle, transparent 0%, rgba(122, 45, 149, var(--gradient-opacity)) var(--percentage));
+}
+
+.spdef {
+    background: radial-gradient(circle, transparent 0%, rgba(255, 192, 0, var(--gradient-opacity)) var(--percentage));
+}
+
+.speed {
+    background: radial-gradient(circle, transparent 0%, rgba(0, 112, 192, var(--gradient-opacity)) var(--percentage));
 }
