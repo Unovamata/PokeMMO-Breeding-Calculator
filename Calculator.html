@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertical Tree</title>
+    <title>PokeMMO - Breeding Calculator</title>
     <link rel="stylesheet" type="text/css" href="style.css"></link>
 </head>
 <body>
@@ -23,7 +23,7 @@
             <div class="trapezoid" id="prices">
                 <img src="stats/poke.png">
             </div>
-            <div class="trapezoid" id="prices">
+            <div class="trapezoid" id="settings">
                 <img src="stats/settings.png">
             </div>
         </div>
@@ -226,7 +226,13 @@
             <div class="separator"></div>
         </div>
 
-        <div class="container">
+        <div class="container" id="settings-container">
+            <table class="table">
+                <caption>Calculator Settings</caption>
+            </table>
+        </div>
+
+        <div class="container" id="calculate-container">
             <div class="center" id="calculate">
                 <button>Calculate</button>
             </div>

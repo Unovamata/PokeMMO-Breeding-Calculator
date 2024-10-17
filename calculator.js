@@ -15,30 +15,52 @@ var parent;
 document.addEventListener("DOMContentLoaded", function() {
     const breedersButton = document.getElementById("breeders"),
           powersButton = document.getElementById("powers"),
-          pricesButton = document.getElementById("prices");
+          pricesButton = document.getElementById("prices"),
+          settingsButton = document.getElementById("settings");
 
     const breedersMenu = document.getElementById("gender-container"),
           powersMenu = document.getElementById("powers-container"),
-          pricesMenu = document.getElementById("prices-container");
+          pricesMenu = document.getElementById("prices-container"),
+          settingsMenu = document.getElementById("settings-container");
 
     breedersButton.addEventListener("click", function(){
-        breedersMenu.style.display = "block";
-        powersMenu.style.display = "none";
-        pricesMenu.style.display = "none";
+        SelectTab(breedersMenu, breedersButton);
+        HideTab(powersMenu, powersButton);
+        HideTab(pricesMenu, pricesButton);
+        HideTab(settingsMenu, settingsButton);
     });
 
     powersButton.addEventListener("click", function(){
-        breedersMenu.style.display = "none";
-        powersMenu.style.display = "block";
-        pricesMenu.style.display = "none";
+        HideTab(breedersMenu, breedersButton);
+        SelectTab(powersMenu, powersButton);
+        HideTab(pricesMenu, pricesButton);
+        HideTab(settingsMenu, settingsButton);
     });
 
     pricesButton.addEventListener("click", ShowTotalResultsScreen);
 
+    settingsButton.addEventListener("click", function(){
+        HideTab(breedersMenu, breedersButton);
+        HideTab(powersMenu, powersButton);
+        HideTab(pricesMenu, pricesButton);
+        SelectTab(settingsMenu, settingsButton);
+    });
+
+    function SelectTab(element, button){
+        element.style.display = "block";
+        button.classList.add("selected");
+    }
+
+    function HideTab(element, button){
+        element.style.display = "none";
+        button.classList.remove("selected");
+    }
+
     function ShowTotalResultsScreen(){
-        breedersMenu.style.display = "none";
-        powersMenu.style.display = "none";
-        pricesMenu.style.display = "block";
+        HideTab(breedersMenu, breedersButton);
+        HideTab(powersMenu, powersButton);
+        HideTab(settingsMenu, settingsButton);
+        SelectTab(pricesMenu, pricesButton);
     }
     
     const calculateButton = document.getElementById("calculate"),
