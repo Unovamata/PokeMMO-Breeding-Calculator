@@ -21,13 +21,25 @@ class Node {
         const div = document.createElement("div");
         const IVs = this.value;
 
-        CreateItemsAndIVCounter(div, IVs, this.item);
+        CreateItemsAndIVCounter(div, this.gender, IVs, this.item);
 
-        function CreateItemsAndIVCounter(div, IVs, itemSrc = ""){
+        function CreateItemsAndIVCounter(div, gender, IVs, itemSrc = ""){
             var itemBox;
+            
+            if(gender == "female"){
+                var genderBox = document.createElement("a");
+                genderBox.classList.add("box");
+                genderBox.classList.add("gender");
+                const img = document.createElement("img");
+                img.src = "stats/female.png";
     
+                genderBox.appendChild(img);
+    
+                div.appendChild(genderBox);
+            }
+
             if (itemSrc != ""){
-                itemBox = document.createElement("a");
+                var itemBox = document.createElement("a");
                 itemBox.classList.add("box");
                 itemBox.classList.add("item");
                 const img = document.createElement("img");
@@ -52,8 +64,6 @@ class Node {
             IVCounter.textContent = `${IVsCount}x31${natureHandle}`;
     
             div.appendChild(IVCounter);
-    
-            return {"items": itemBox, "ivs": IVCounter};
         }
 
         IVs.forEach(function(IV){

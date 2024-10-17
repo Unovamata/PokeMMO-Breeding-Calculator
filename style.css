@@ -300,6 +300,11 @@ input {
 
 /*########################################################################*/
 
+:root {
+    --gradient-opacity: 0.8; /* Adjust this value as needed (0 to 1) */
+    --percentage: 90%;
+}
+
 .box {
     border: 1px solid #000;
     width: 45px;
@@ -312,13 +317,17 @@ input {
     color: white;
 }
 
-.box img {
+.box img, .gender img {
+    max-width: 24px;
     transform: translateY(5px);
 }
 
-:root {
-    --gradient-opacity: 0.8; /* Adjust this value as needed (0 to 1) */
-    --percentage: 90%;
+.gender {
+    background: radial-gradient(circle, transparent 0%, rgba(254, 105, 250, var(--gradient-opacity)) var(--percentage));
+}
+
+.gender img {
+    transform: translateY(7px);
 }
 
 .item {

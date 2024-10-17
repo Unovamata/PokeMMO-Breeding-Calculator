@@ -14,7 +14,7 @@
 <div class="flex-container">
     <div class="left-section">
         <div class="trapezoid-container">
-            <div class="trapezoid" id="breeders">
+            <div class="trapezoid selected" id="breeders">
                 <img src="stats/egg.png">
             </div>
             <div class="trapezoid" id="powers">
@@ -22,6 +22,9 @@
             </div>
             <div class="trapezoid" id="prices">
                 <img src="stats/poke.png">
+            </div>
+            <div class="trapezoid" id="prices">
+                <img src="stats/settings.png">
             </div>
         </div>
 
@@ -182,6 +185,10 @@
                         <td><input id="gender-selection-total-price" disabled value="0"></td>
                     </tr>
                     <tr>
+                        <th>Pokeballs</th>
+                        <td><input id="pokeballs-total-price" disabled value="0"></td>
+                    </tr>
+                    <tr>
                         <th><img src="stats/poke.png"></th>
                         <th><input id="breeding-total-price" disabled value="0"></th>
                     </tr>
@@ -189,7 +196,7 @@
             </table>
 
             <table id="total-braces" class="table braces-table">
-                <caption>Items to Purchase</caption>
+                <caption>General Investments</caption>
                 <thead>
                     <tr>
                         <th><img src="stats/pokeball.png"></th>

@@ -5,8 +5,10 @@ var everstonePrice = 6000,
     everstonesToBuy = 0;
 
 var genderSelectionPrice = 0
-    genderSelections = 0,
+    bredChildren = 0,
     genderSelectionTotal = 0;
+
+var pokeballPrice = 200;
 
 var parent;
 
@@ -40,15 +42,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     const calculateButton = document.getElementById("calculate"),
-          treeContainer = document.getElementById("tree"),
-          header = document.getElementById("header");
+          treeContainer = document.getElementById("tree");
 
     const IVsToPass = document.getElementById("IVs").querySelectorAll("input");
 
     function ResetData(){
         everstonesToBuy = 0;
         bracesToBuy = [0, 0, 0, 0, 0, 0];
-        genderSelectionPrice = document.getElementById("gender-selection-price").value;
+        bredChildren = 0;
+        genderSelectionPrice = Number(document.getElementById("gender-selection-price").value);
+        pokeballsNeeded = 0;
     }
 
     calculateButton.addEventListener("click", function(){
@@ -107,13 +110,14 @@ document.addEventListener("DOMContentLoaded", function() {
         var removedRightIV = rightIVs.pop();
         var removedRightName = GetItemSource(removedRightIV)
 
-        const leftNode = new Node(leftIVs, removedRightName);
+        const leftNode = new Node(leftIVs, removedRightName, "female");
         const rightNode = new Node(rightIVs, removedLeftName);
         
         node.children.push(leftNode)
         node.children.push(rightNode)
 
         depth += 1
+        if(leftIVs.length >= 1 || rightIVs.length >= 1) bredChildren += 1;
 
         RecursiveIVIsolation(leftNode, parent, depth)
         RecursiveIVIsolation(rightNode, parent, depth)
@@ -196,7 +200,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const everstonesTotalInput = document.getElementById("everstones-total-price"),
           bracesTotalInput = document.getElementById("braces-total-price"),
           breedingTotalInput = document.getElementById("breeding-total-price"),
-          totalBracesTableInputs = document.getElementById("total-braces").querySelectorAll("input");
+          genderSelectionTotalInput = document.getElementById("gender-selection-total-price"),
+          pokeballsTotalInput = document.getElementById("pokeballs-total-price"),
+          totalItemsNeededTableInputs = document.getElementById("total-braces").querySelectorAll("input");
 
     const everstonePriceInputValue = document.getElementById("everstone-market-price").value,
           everstoneMarketPrice = isNaN(everstonePriceInputValue) ? 6000 : parseInt(everstonePriceInputValue);
@@ -204,16 +210,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function SetTotalPrices(){
         var everstonesTotal = 0,
             numberOfBracesToBuy = 0,
-            bracesTotal = 0;
-
-        genderSelections = (parent.Count() - 1) / 2;
-
-        console.log(genderSelections);
-
-        const everstonesHeld = Number(itemsInInventory[1].value);
-        var everstonesMissing = Clamp(everstonesToBuy - everstonesHeld, 0)
-
-        everstonesTotal = everstoneMarketPrice * everstonesMissing;
+            bracesTotal = 0,
+            gendersSelectionsTotal = 0
+            pokeballsTotal = 0;
 
         for(var i = 2; i <= bracesToBuy.length + 1; i++){
             const braceTypeInInventory = Number(itemsInInventory[i].value),
@@ -221,19 +220,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
             numberOfBracesToBuy += bracesToBuyOfType;
 
-            const inputTotal = totalBracesTableInputs[i];
+            const inputTotal = totalItemsNeededTableInputs[i];
 
             inputTotal.value = bracesToBuyOfType;
         }
 
+        const everstonesHeld = Number(itemsInInventory[1].value);
+        var everstonesMissing = Clamp(everstonesToBuy - everstonesHeld, 0);
+        everstonesTotal = everstoneMarketPrice * everstonesMissing;
+
         bracesTotal = numberOfBracesToBuy * 10000;
+
+        const pokeballsHeld = Number(itemsInInventory[0].value);
+        var pokeballsMissing = Clamp(bredChildren - pokeballsHeld, 0);
+        pokeballsTotal = pokeballPrice * pokeballsMissing;
 
         everstonesTotalInput.value = everstonesTotal;
         bracesTotalInput.value = bracesTotal;
+        pokeballsTotalInput.value = pokeballsTotal;
+
+        var genderSelections = Clamp(Math.ceil((bredChildren - 1) / 2), 0);
+        gendersSelectionsTotal = genderSelections * genderSelectionPrice;
+        genderSelectionTotalInput.value = genderSelections * genderSelectionPrice;
+
+        // Pokeballs to buy input field;
+        totalItemsNeededTableInputs[0].value = pokeballsMissing;
 
         // Everstones to buy input field;
-        totalBracesTableInputs[1].value = everstonesMissing;
+        totalItemsNeededTableInputs[1].value = everstonesMissing;
 
-        breedingTotalInput.value = everstonesTotal + bracesTotal;
+        breedingTotalInput.value = everstonesTotal + bracesTotal + gendersSelectionsTotal + pokeballsTotal;
     }
 });
