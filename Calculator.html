@@ -37,6 +37,11 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <th>Nat</th>
+                        <td><input value="0"></td>
+                        <td><input value="0"></td>
+                    </tr>
+                    <tr>
                         <th>HP</th>
                         <td><input value="0"></td>
                         <td><input value="0"></td>
@@ -65,6 +70,10 @@
                         <th>Spd</th>
                         <td><input value="0"></td>
                         <td><input value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender Selection</th>
+                        <td colspan="2"><input id="gender-selection-price" value="5000" class="larger-input"></td>
                     </tr>
                 </tbody>
             </table>
@@ -99,10 +108,11 @@
                 </tbody>
             </table>
             
-            <table class="table braces-table">
+            <table class="table braces-table" id="items-in-inventory">
                 <caption>Items in Inventory</caption>
                 <thead>
                     <tr>
+                        <th><img src="stats/pokeball.png"></th>
                         <th><img src="stats/everstone.png"></th>
                         <th><img src="stats/weight.png"></th>
                         <th><img src="stats/power.png"></th>
@@ -114,6 +124,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td><input type="number" min="0" max="999" value="0"></td>
                         <td><input type="number" min="0" max="999" value="0"></td>
                         <td><input type="number" min="0" max="999" value="0"></td>
                         <td><input type="number" min="0" max="999" value="0"></td>
@@ -136,7 +147,7 @@
                 <tbody>
                     <tr>
                         <td><input class="larger-input" type="number" min="0" max="999999" value="0"></td>
-                        <td><input class="larger-input" type="number" min="0" max="999999" value="0"></td>
+                        <td><input id="everstone-market-price" class="larger-input" type="number" min="0" max="999999" value="6000"></td>
                     </tr>
                 </tbody>
             </table>
@@ -151,28 +162,56 @@
                     <tr>
                         <th>Investment</th>
                         <th><img src="stats/poke.png"></th>
-                        <th>Needed</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th>Breeders</th>
-                        <td><input disabled value="0"></td>
-                        <td><input disabled class="smaller-input" value="0" min="0" max="99"></td>
+                        <td><input id="breeders-total-price" disabled value="0"></td>
                     </tr>
                     <tr>
                         <th>Everstones</th>
-                        <td><input disabled value="0"></td>
-                        <td><input disabled class="smaller-input" value="0" min="0" max="99"></td>
+                        <td><input id="everstones-total-price" disabled value="0"></td>
                     </tr>
                     <tr>
                         <th>Braces</th>
-                        <td><input disabled value="0"></td>
-                        <td><input disabled class="smaller-input" value="0" min="0" max="99"></td>
+                        <td><input id="braces-total-price" disabled value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender Selection</th>
+                        <td><input id="gender-selection-total-price" disabled value="0"></td>
                     </tr>
                     <tr>
                         <th><img src="stats/poke.png"></th>
-                        <th colspan="2"><input disabled value="0"></th>
+                        <th><input id="breeding-total-price" disabled value="0"></th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="total-braces" class="table braces-table">
+                <caption>Items to Purchase</caption>
+                <thead>
+                    <tr>
+                        <th><img src="stats/pokeball.png"></th>
+                        <th><img src="stats/everstone.png"></th>
+                        <th><img src="stats/weight.png"></th>
+                        <th><img src="stats/power.png"></th>
+                        <th><img src="stats/belt.png"></th>
+                        <th><img src="stats/lens.png"></th>
+                        <th><img src="stats/band.png"></th>
+                        <th><img src="stats/anklet.png"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
                     </tr>
                 </tbody>
             </table>
@@ -191,6 +230,7 @@
     </div>
 </div>
 
+<script src="utils.js"></script>
 <script src="calculator.js"></script>
 
 </body>

@@ -1,3 +1,15 @@
+var bracesPrices = 10000,
+    bracesToBuy = [0, 0, 0, 0, 0, 0];
+
+var everstonePrice = 6000,
+    everstonesToBuy = 0;
+
+var genderSelectionPrice = 0
+    genderSelections = 0,
+    genderSelectionTotal = 0;
+
+var parent;
+
 document.addEventListener("DOMContentLoaded", function() {
     const breedersButton = document.getElementById("breeders"),
           powersButton = document.getElementById("powers"),
@@ -19,125 +31,30 @@ document.addEventListener("DOMContentLoaded", function() {
         pricesMenu.style.display = "none";
     });
 
-    pricesButton.addEventListener("click", function(){
+    pricesButton.addEventListener("click", ShowTotalResultsScreen);
+
+    function ShowTotalResultsScreen(){
         breedersMenu.style.display = "none";
         powersMenu.style.display = "none";
         pricesMenu.style.display = "block";
-    });
+    }
     
     const calculateButton = document.getElementById("calculate"),
           treeContainer = document.getElementById("tree"),
           header = document.getElementById("header");
 
-    class Node {
-        constructor(value, item){
-            this.value = value;
-            this.children = [];
-            this.item = item;
-        }
-
-        Count(){
-            var count = 1;
-
-            this.children.forEach(function(child){
-                count += child.Count()
-            });
-
-            return count
-        }
-            
-
-        Graph(){
-            const div = document.createElement("div");
-            const IVs = this.value;
-
-            const itemsAndIVs = CreateItemsAndIVCounter(div, IVs, this.item);
-
-            IVs.forEach(function(IV){
-                const box = document.createElement("a");
-                box.classList.add("box");
-
-                switch(IV){
-                    case "Nature":
-                        box.classList.add("nature");
-                        box.textContent = "Nat";
-                    break;
-
-                    case "HP":
-                        box.classList.add("hp");
-                        box.textContent = "HP";
-                    break;
-
-                    case "Attack":
-                        box.classList.add("attack");
-                        box.textContent = "Atk";
-                    break;
-
-                    case "Defense":
-                        box.classList.add("defense");
-                        box.textContent = "Def";
-                    break;
-
-                    case "Sp. Attack":
-                        box.classList.add("spatk");
-                        box.textContent = "SpAtk";
-                    break;
-
-                    case "Sp. Defense":
-                        box.classList.add("spdef");
-                        box.textContent = "SpDef";
-                    break;
-
-                    case "Speed":
-                        box.classList.add("speed");
-                        box.textContent = "Spd";
-                    break;
-                }
-
-                div.appendChild(box);
-            });
-
-            return div;
-        }
-    }
-
-    function CreateItemsAndIVCounter(div, IVs, itemSrc = ""){
-        var itemBox;
-
-        if (itemSrc != ""){
-            itemBox = document.createElement("a");
-            itemBox.classList.add("box");
-            itemBox.classList.add("item");
-            const img = document.createElement("img");
-            img.src = itemSrc;
-
-            itemBox.appendChild(img);
-
-            div.appendChild(itemBox);
-        }
-        
-        const IVCounter = document.createElement("a");
-        IVCounter.classList.add("box");
-        IVCounter.classList.add("ivs");
-        var IVsCount = IVs.length,
-            natureHandle = "";
-
-        if(IVs.includes("Nature")){
-            IVsCount -= 1;
-            natureHandle = "N";
-        } 
-        
-        IVCounter.textContent = `${IVsCount}x31${natureHandle}`;
-
-        div.appendChild(IVCounter);
-
-        return {"items": itemBox, "ivs": IVCounter};
-    }
-
     const IVsToPass = document.getElementById("IVs").querySelectorAll("input");
+
+    function ResetData(){
+        everstonesToBuy = 0;
+        bracesToBuy = [0, 0, 0, 0, 0, 0];
+        genderSelectionPrice = document.getElementById("gender-selection-price").value;
+    }
 
     calculateButton.addEventListener("click", function(){
         if(IVsToPass.length == 0) return;
+
+        ResetData();
 
         const IVs = []
 
@@ -154,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(IVCount == 0) return;
         treeContainer.innerHTML = "";
 
-        const parent = new Node(IVs, "")
+        parent = new Node(IVs, "")
 
         RecursiveIVIsolation(parent);
 
@@ -170,13 +87,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const pageSize = treeContainer.querySelector("li").offsetWidth + 150;
 
-        treeContainer.style.width = `${pageSize}px`;
-        header.style.width = `${pageSize + 500}px`;
-    });
+        treeContainer.style.width = `${PxToVw(pageSize)}vw`;
 
-    function Clamp(value, min, max) {
-        return Math.max(min, Math.min(max, value));
-    }
+        SetTotalPrices();
+
+        ShowTotalResultsScreen();
+    });
 
     function RecursiveIVIsolation(node, parent = null, depth = 1){
         IVs = node.value;
@@ -209,37 +125,42 @@ document.addEventListener("DOMContentLoaded", function() {
         switch(IV) {
             case "Nature":
                 itemSrc += "everstone.png";
+                everstonesToBuy += 1;
             break;
 
             case "HP":
                 itemSrc += "weight.png";
+                bracesToBuy[0] += 1;
             break;
 
             case "Attack":
                 itemSrc += "power.png";
+                bracesToBuy[1] += 1;
             break;
 
             case "Defense":
                 itemSrc += "belt.png";
+                bracesToBuy[2] += 1;
             break;
 
             case "Sp. Attack":
                 itemSrc += "lens.png";
+                bracesToBuy[3] += 1;
             break;
 
             case "Sp. Defense":
                 itemSrc += "band.png";
+                bracesToBuy[4] += 1;
             break;
 
             case "Speed":
                 itemSrc += "anklet.png";
+                bracesToBuy[5] += 1;
             break;
         }
         
         return itemSrc;
     }
-
-
 
     function PopulateTree(node, parentElement) {
         // Create a new <li> for the current node
@@ -264,5 +185,55 @@ document.addEventListener("DOMContentLoaded", function() {
     
         // Append the current <li> to the parent element
         parentElement.appendChild(li);
+    }
+
+
+    //##############################################################################################
+
+
+    const itemsInInventory = document.getElementById("items-in-inventory").querySelectorAll("input");
+
+    const everstonesTotalInput = document.getElementById("everstones-total-price"),
+          bracesTotalInput = document.getElementById("braces-total-price"),
+          breedingTotalInput = document.getElementById("breeding-total-price"),
+          totalBracesTableInputs = document.getElementById("total-braces").querySelectorAll("input");
+
+    const everstonePriceInputValue = document.getElementById("everstone-market-price").value,
+          everstoneMarketPrice = isNaN(everstonePriceInputValue) ? 6000 : parseInt(everstonePriceInputValue);
+
+    function SetTotalPrices(){
+        var everstonesTotal = 0,
+            numberOfBracesToBuy = 0,
+            bracesTotal = 0;
+
+        genderSelections = (parent.Count() - 1) / 2;
+
+        console.log(genderSelections);
+
+        const everstonesHeld = Number(itemsInInventory[1].value);
+        var everstonesMissing = Clamp(everstonesToBuy - everstonesHeld, 0)
+
+        everstonesTotal = everstoneMarketPrice * everstonesMissing;
+
+        for(var i = 2; i <= bracesToBuy.length + 1; i++){
+            const braceTypeInInventory = Number(itemsInInventory[i].value),
+                  bracesToBuyOfType = Clamp(bracesToBuy[i - 2] - braceTypeInInventory, 0);
+
+            numberOfBracesToBuy += bracesToBuyOfType;
+
+            const inputTotal = totalBracesTableInputs[i];
+
+            inputTotal.value = bracesToBuyOfType;
+        }
+
+        bracesTotal = numberOfBracesToBuy * 10000;
+
+        everstonesTotalInput.value = everstonesTotal;
+        bracesTotalInput.value = bracesTotal;
+
+        // Everstones to buy input field;
+        totalBracesTableInputs[1].value = everstonesMissing;
+
+        breedingTotalInput.value = everstonesTotal + bracesTotal;
     }
 });
