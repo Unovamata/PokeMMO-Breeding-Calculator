@@ -149,7 +149,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input class="larger-input" type="number" min="0" max="999999" value="0"></td>
+                        <td><input id="battle-points-available" class="larger-input" type="number" min="0" max="999999" value="0"></td>
                         <td><input id="everstone-market-price" class="larger-input" type="number" min="0" max="999999" value="6000"></td>
                     </tr>
                 </tbody>
@@ -189,6 +189,10 @@
                         <td><input id="pokeballs-total-price" disabled value="0"></td>
                     </tr>
                     <tr>
+                        <th>Battle Points</th>
+                        <td><input id="battle-points-total" disabled value="0"></td>
+                    </tr>
+                    <tr>
                         <th><img src="stats/poke.png"></th>
                         <th><input id="breeding-total-price" disabled value="0"></th>
                     </tr>
@@ -196,7 +200,35 @@
             </table>
 
             <table id="total-braces" class="table braces-table">
-                <caption>General Investments</caption>
+                <caption>Total Items Used</caption>
+                <thead>
+                    <tr>
+                        <th><img src="stats/pokeball.png"></th>
+                        <th><img src="stats/everstone.png"></th>
+                        <th><img src="stats/weight.png"></th>
+                        <th><img src="stats/power.png"></th>
+                        <th><img src="stats/belt.png"></th>
+                        <th><img src="stats/lens.png"></th>
+                        <th><img src="stats/band.png"></th>
+                        <th><img src="stats/anklet.png"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                        <td><input disabled type="number" min="0" max="999" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="total-braces-to-purchase" class="table braces-table purchase-braces-table">
+                <caption>Items to Purchase</caption>
                 <thead>
                     <tr>
                         <th><img src="stats/pokeball.png"></th>

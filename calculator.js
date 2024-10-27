@@ -224,12 +224,21 @@ document.addEventListener("DOMContentLoaded", function() {
           breedingTotalInput = document.getElementById("breeding-total-price"),
           genderSelectionTotalInput = document.getElementById("gender-selection-total-price"),
           pokeballsTotalInput = document.getElementById("pokeballs-total-price"),
-          totalItemsNeededTableInputs = document.getElementById("total-braces").querySelectorAll("input");
+          battlePointsTotalInput = document.getElementById("battle-points-total"),
+          totalItemsNeededTableInputs = document.getElementById("total-braces").querySelectorAll("input"),
+          totalItemsToPurchaseInputs = document.getElementById("total-braces-to-purchase").querySelectorAll("input");
 
-    const everstonePriceInputValue = document.getElementById("everstone-market-price").value,
-          everstoneMarketPrice = isNaN(everstonePriceInputValue) ? 6000 : parseInt(everstonePriceInputValue);
+    var everstonePriceInputValue = document.getElementById("everstone-market-price").value,
+        everstoneMarketPrice = isNaN(everstonePriceInputValue) ? 6000 : parseInt(everstonePriceInputValue);
+
+    function ExtractEverstonePrice(){
+        everstonePriceInputValue = document.getElementById("everstone-market-price").value,
+        everstoneMarketPrice = isNaN(everstonePriceInputValue) ? 6000 : parseInt(everstonePriceInputValue);
+    }
 
     function SetTotalPrices(){
+        ExtractEverstonePrice();
+
         var everstonesTotal = 0,
             numberOfBracesToBuy = 0,
             bracesTotal = 0,
@@ -238,13 +247,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
         for(var i = 2; i <= bracesToBuy.length + 1; i++){
             const braceTypeInInventory = Number(itemsInInventory[i].value),
-                  bracesToBuyOfType = Clamp(bracesToBuy[i - 2] - braceTypeInInventory, 0);
+                  amountOfBracesNeeded = bracesToBuy[i - 2],
+                  missingBracesToBuy = Clamp(amountOfBracesNeeded - braceTypeInInventory, 0);
 
-            numberOfBracesToBuy += bracesToBuyOfType;
+            numberOfBracesToBuy += missingBracesToBuy;
 
             const inputTotal = totalItemsNeededTableInputs[i];
 
-            inputTotal.value = bracesToBuyOfType;
+            inputTotal.value = amountOfBracesNeeded;
+
+            const itemCountPurchaseTotal = totalItemsToPurchaseInputs[i];
+
+            itemCountPurchaseTotal.value = missingBracesToBuy;
         }
 
         const everstonesHeld = Number(itemsInInventory[1].value);
@@ -265,11 +279,15 @@ document.addEventListener("DOMContentLoaded", function() {
         gendersSelectionsTotal = genderSelections * genderSelectionPrice;
         genderSelectionTotalInput.value = genderSelections * genderSelectionPrice;
 
+        console.log(gendersSelectionsTotal)
+
         // Pokeballs to buy input field;
-        totalItemsNeededTableInputs[0].value = pokeballsMissing;
+        totalItemsNeededTableInputs[0].value = bredChildren;
+        totalItemsToPurchaseInputs[0].value = pokeballsMissing;
 
         // Everstones to buy input field;
-        totalItemsNeededTableInputs[1].value = everstonesMissing;
+        totalItemsNeededTableInputs[1].value = everstonesToBuy;
+        totalItemsToPurchaseInputs[1].value = everstonesMissing;
 
         breedingTotalInput.value = everstonesTotal + bracesTotal + gendersSelectionsTotal + pokeballsTotal;
     }
