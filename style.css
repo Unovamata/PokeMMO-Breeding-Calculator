@@ -141,7 +141,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding-bottom: 15px;
 }
 
-#calculate button {
+.pokemmo-button button {
     font-family: 'Montserrat', sans-serif;
     color: white;
     background: linear-gradient(to bottom, #535a60, #3c4247);
@@ -152,10 +152,30 @@ input[type=number]::-webkit-outer-spin-button {
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease; /* Smooth transition */
 }
 
-#calculate button:hover {
+.pokemmo-button button:hover {
     background: linear-gradient(to top, #535a60, #3c4247); /* Reverse gradient on hover */
     transform: scale(1.03); /* Slightly grow the button */
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3), 0px 0px 5px rgba(255, 255, 255, 0.5); /* Subtle gradient shadow */
+}
+
+a {
+    text-decoration: none;
+}
+
+.star-button {
+    position: fixed;
+    right: 10px;
+}
+
+.star-button button {
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    gap: 10px;
+    cursor: pointer;
 }
 
 input {

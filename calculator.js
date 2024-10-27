@@ -236,8 +236,19 @@ document.addEventListener("DOMContentLoaded", function() {
         everstoneMarketPrice = isNaN(everstonePriceInputValue) ? 6000 : parseInt(everstonePriceInputValue);
     }
 
+    var battlePointsAvailable = document.getElementById("battle-points-available").value,
+        battlePointBraces = battlePointsAvailable / 750;
+
+    function ExtractBattlePointsAvailable(){
+        battlePointsAvailable = document.getElementById("battle-points-available").value,
+        battlePointBraces = battlePointsAvailable / 750;
+
+        console.log(battlePointBraces);
+    }
+
     function SetTotalPrices(){
         ExtractEverstonePrice();
+        ExtractBattlePointsAvailable();
 
         var everstonesTotal = 0,
             numberOfBracesToBuy = 0,
@@ -278,8 +289,6 @@ document.addEventListener("DOMContentLoaded", function() {
         var genderSelections = Clamp(Math.ceil((bredChildren - 1) / 2), 0);
         gendersSelectionsTotal = genderSelections * genderSelectionPrice;
         genderSelectionTotalInput.value = genderSelections * genderSelectionPrice;
-
-        console.log(gendersSelectionsTotal)
 
         // Pokeballs to buy input field;
         totalItemsNeededTableInputs[0].value = bredChildren;
