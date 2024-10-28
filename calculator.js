@@ -241,9 +241,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function ExtractBattlePointsAvailable(){
         battlePointsAvailable = document.getElementById("battle-points-available").value,
-        battlePointBraces = battlePointsAvailable / 750;
-
-        console.log(battlePointBraces);
+        battlePointBraces = Math.floor(battlePointsAvailable / 750);
     }
 
     function SetTotalPrices(){
@@ -258,8 +256,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         for(var i = 2; i <= bracesToBuy.length + 1; i++){
             const braceTypeInInventory = Number(itemsInInventory[i].value),
-                  amountOfBracesNeeded = bracesToBuy[i - 2],
-                  missingBracesToBuy = Clamp(amountOfBracesNeeded - braceTypeInInventory, 0);
+                  amountOfBracesNeeded = bracesToBuy[i - 2];
+            
+            var missingBracesToBuy = Clamp(amountOfBracesNeeded - braceTypeInInventory, 0),
+                battlePointsBracesToBuy = 0;
 
             numberOfBracesToBuy += missingBracesToBuy;
 
@@ -267,9 +267,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
             inputTotal.value = amountOfBracesNeeded;
 
-            const itemCountPurchaseTotal = totalItemsToPurchaseInputs[i];
+            // Managing Battle Points & Items To Buy
+            battlePointsBracesToBuy = Math.min(battlePointBraces, missingBracesToBuy);
 
+            // Update `battlePointBraces` and `missingBracesToBuy` to reflect the purchase
+            var minBracesToBuy = Math.min(battlePointBraces, missingBracesToBuy);
+            battlePointBraces -= minBracesToBuy;
+            missingBracesToBuy -= minBracesToBuy;
+
+            const itemCountPurchaseTotal = totalItemsToPurchaseInputs[i];
+            
             itemCountPurchaseTotal.value = missingBracesToBuy;
+
+            const battlePointsItemCountTotal = totalItemsToPurchaseInputs[i + 8];
+
+            battlePointsItemCountTotal.value = battlePointsBracesToBuy;
         }
 
         const everstonesHeld = Number(itemsInInventory[1].value);
