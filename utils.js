@@ -1,3 +1,16 @@
+class Breeders {
+    constructor(nat = 0, hp = 0, atk = 0, def = 0, spatk = 0, spdef = 0, spd = 0, IV0x31 = 0){
+        this.nat = nat;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.spatk = spatk;
+        this.spdef = spdef;
+        this.spd = spd;
+        this.IV0x31 = IV0x31;
+    }
+}
+
 class Node {
     constructor(value, item, gender = "any"){
         this.value = value;

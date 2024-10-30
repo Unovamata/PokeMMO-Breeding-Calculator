@@ -27,24 +27,24 @@ document.addEventListener("DOMContentLoaded", function() {
         SelectTab(breedersMenu, breedersButton);
         HideTab(powersMenu, powersButton);
         HideTab(pricesMenu, pricesButton);
-        HideTab(settingsMenu, settingsButton);
+        //HideTab(settingsMenu, settingsButton);
     });
 
     powersButton.addEventListener("click", function(){
         HideTab(breedersMenu, breedersButton);
         SelectTab(powersMenu, powersButton);
         HideTab(pricesMenu, pricesButton);
-        HideTab(settingsMenu, settingsButton);
+        //HideTab(settingsMenu, settingsButton);
     });
 
     pricesButton.addEventListener("click", ShowTotalResultsScreen);
 
-    settingsButton.addEventListener("click", function(){
+    /*settingsButton.addEventListener("click", function(){
         HideTab(breedersMenu, breedersButton);
         HideTab(powersMenu, powersButton);
         HideTab(pricesMenu, pricesButton);
         SelectTab(settingsMenu, settingsButton);
-    });
+    });*/
 
     function SelectTab(element, button){
         element.style.display = "block";
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function ShowTotalResultsScreen(){
         HideTab(breedersMenu, breedersButton);
         HideTab(powersMenu, powersButton);
-        HideTab(settingsMenu, settingsButton);
+        //HideTab(settingsMenu, settingsButton);
         SelectTab(pricesMenu, pricesButton);
     }
     
@@ -236,15 +236,76 @@ document.addEventListener("DOMContentLoaded", function() {
         everstoneMarketPrice = isNaN(everstonePriceInputValue) ? 6000 : parseInt(everstonePriceInputValue);
     }
 
+    const bracesBPCost = 750;
+
     var battlePointsAvailable = document.getElementById("battle-points-available").value,
-        battlePointBraces = battlePointsAvailable / 750;
+        battlePointBracesAvailableToBuy = battlePointsAvailable / bracesBPCost,
+        battlePointBracesPurchased = 0;
 
     function ExtractBattlePointsAvailable(){
         battlePointsAvailable = document.getElementById("battle-points-available").value,
-        battlePointBraces = Math.floor(battlePointsAvailable / 750);
+        battlePointBracesAvailableToBuy = Math.floor(battlePointsAvailable / bracesBPCost);
+    }
+
+    var femaleCosts = new Breeders(),
+        maleCosts = new Breeders();
+
+    const breedersTable = document.getElementById("breeders-prices").querySelectorAll("tr");
+
+    function ExtractBreedersCosts(){
+        for(var i = 1; i < breedersTable.length - 1; i++){
+            const row = breedersTable[i],
+                  IVType = row.querySelector("th").textContent,
+                  inputs = row.querySelectorAll("input");
+
+            // Female Breeder Data;
+            const femalePrice = inputs[0];
+            AddBreederData(femaleCosts, femalePrice, IVType);
+
+            const malePrice = inputs[1];
+            AddBreederData(maleCosts, malePrice, IVType);
+            
+        }
+
+        function AddBreederData(breederData, input, IVType){
+            switch(IVType){
+                case "Nat":
+                    breederData.nat = Number(input.value);
+                break;
+
+                case "HP":
+                    breederData.hp = Number(input.value);
+                break;
+
+                case "Atk":
+                    breederData.atk = Number(input.value);
+                break;
+
+                case "Def":
+                    breederData.def = Number(input.value);
+                break;
+
+                case "Sp.Atk":
+                    breederData.spatk = Number(input.value);
+                break;
+
+                case "Sp.Def":
+                    breederData.spdef = Number(input.value);
+                break;
+
+                case "Spd":
+                    breederData.spd = Number(input.value);
+                break;
+
+                case "0x31":
+                    breederData.IV0x31 = Number(input.value);
+                break;
+            }
+        }
     }
 
     function SetTotalPrices(){
+        ExtractBreedersCosts();
         ExtractEverstonePrice();
         ExtractBattlePointsAvailable();
 
@@ -259,29 +320,29 @@ document.addEventListener("DOMContentLoaded", function() {
                   amountOfBracesNeeded = bracesToBuy[i - 2];
             
             var missingBracesToBuy = Clamp(amountOfBracesNeeded - braceTypeInInventory, 0),
-                battlePointsBracesToBuy = 0;
-
-            numberOfBracesToBuy += missingBracesToBuy;
+                battlePointsBracesTypeToBuy = 0;
 
             const inputTotal = totalItemsNeededTableInputs[i];
 
             inputTotal.value = amountOfBracesNeeded;
 
             // Managing Battle Points & Items To Buy
-            battlePointsBracesToBuy = Math.min(battlePointBraces, missingBracesToBuy);
+            battlePointsBracesTypeToBuy = Math.min(battlePointBracesAvailableToBuy, missingBracesToBuy);
 
             // Update `battlePointBraces` and `missingBracesToBuy` to reflect the purchase
-            var minBracesToBuy = Math.min(battlePointBraces, missingBracesToBuy);
-            battlePointBraces -= minBracesToBuy;
+            var minBracesToBuy = Math.min(battlePointBracesAvailableToBuy, missingBracesToBuy);
+            battlePointBracesAvailableToBuy -= minBracesToBuy;
             missingBracesToBuy -= minBracesToBuy;
 
             const itemCountPurchaseTotal = totalItemsToPurchaseInputs[i];
             
             itemCountPurchaseTotal.value = missingBracesToBuy;
+            numberOfBracesToBuy += missingBracesToBuy;
 
             const battlePointsItemCountTotal = totalItemsToPurchaseInputs[i + 8];
 
-            battlePointsItemCountTotal.value = battlePointsBracesToBuy;
+            battlePointsItemCountTotal.value = battlePointsBracesTypeToBuy;
+            battlePointBracesPurchased += battlePointsBracesTypeToBuy;
         }
 
         const everstonesHeld = Number(itemsInInventory[1].value);
@@ -309,6 +370,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // Everstones to buy input field;
         totalItemsNeededTableInputs[1].value = everstonesToBuy;
         totalItemsToPurchaseInputs[1].value = everstonesMissing;
+
+        battlePointsTotalInput.value = bracesBPCost * battlePointBracesPurchased;
 
         breedingTotalInput.value = everstonesTotal + bracesTotal + gendersSelectionsTotal + pokeballsTotal;
     }
