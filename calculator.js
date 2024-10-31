@@ -64,7 +64,35 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     const calculateButton = document.getElementById("calculate"),
-          treeContainer = document.getElementById("tree");
+          treeContainer = document.getElementById("tree"),
+          zoomInButton = document.getElementById("zoom-in"),
+          zoomOutButton = document.getElementById("zoom-out"),
+          zoomLevelText = document.getElementById("zoom-level");
+
+    var zoomFactor = 0;
+
+    zoomInButton.addEventListener("click", function(){
+        zoomFactor += 1;
+
+        zoomLevelText.textContent = `${100 + (10 * zoomFactor)}%`;
+
+        treeContainer.style.scale = `${GetZoomSize() + (0.1 * zoomFactor)}`
+    });
+
+    zoomOutButton.addEventListener("click", function(){
+        zoomFactor -= 1;
+
+        zoomLevelText.textContent = `${100 + (10 * zoomFactor)}%`;
+
+        treeContainer.style.scale = `${GetZoomSize() + (0.1 * zoomFactor)}`
+    });
+
+    function GetZoomSize(){
+        const transform = window.getComputedStyle(treeContainer).transform;
+        const currentZoom = Number(transform.match(/matrix\(([^)]+)\)/)[1].split(', ')[0]);
+
+        return currentZoom;
+    }
 
     const IVsToPass = document.getElementById("IVs").querySelectorAll("input");
 
@@ -74,6 +102,66 @@ document.addEventListener("DOMContentLoaded", function() {
         bredChildren = 0;
         genderSelectionPrice = Number(document.getElementById("gender-selection-price").value);
         pokeballsNeeded = 0;
+        femaleCosts = new Breeders(),
+        maleCosts = new Breeders();
+    }
+
+    var femaleCosts = new Breeders(),
+        maleCosts = new Breeders();
+
+    const breedersTable = document.getElementById("breeders-prices").querySelectorAll("tr");
+
+    function ExtractBreedersCosts(){
+        for(var i = 1; i < breedersTable.length - 1; i++){
+            const row = breedersTable[i],
+                  IVType = row.querySelector("th").textContent,
+                  inputs = row.querySelectorAll("input");
+
+            // Female Breeder Data;
+            const femalePrice = inputs[0];
+            AddBreederData(femaleCosts, femalePrice, IVType);
+
+            const malePrice = inputs[1];
+            AddBreederData(maleCosts, malePrice, IVType);
+        }
+
+        console.log(femaleCosts, maleCosts);
+
+        function AddBreederData(breederData, input, IVType){
+            switch(IVType){
+                case "Nat":
+                    breederData.costs["Nature"] = Number(input.value);
+                break;
+
+                case "HP":
+                    breederData.costs["HP"] = Number(input.value);
+                break;
+
+                case "Atk":
+                    breederData.costs["Attack"] = Number(input.value);
+                break;
+
+                case "Def":
+                    breederData.costs["Defense"] = Number(input.value);
+                break;
+
+                case "Sp.Atk":
+                    breederData.costs["Sp. Attack"] = Number(input.value);
+                break;
+
+                case "Sp.Def":
+                    breederData.costs["Sp. Defense"] = Number(input.value);
+                break;
+
+                case "Spd":
+                    breederData.costs["Speed"] = Number(input.value);
+                break;
+
+                case "0x31":
+                    breederData.costs["0x31"] = Number(input.value);
+                break;
+            }
+        }
     }
 
     calculateButton.addEventListener("click", function(){
@@ -97,7 +185,8 @@ document.addEventListener("DOMContentLoaded", function() {
         treeContainer.innerHTML = "";
 
         parent = new Node(IVs, "")
-
+        ExtractBreedersCosts();
+        
         RecursiveIVIsolation(parent);
 
         // Reference to the tree container
@@ -130,10 +219,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var rightIVs = IVs.slice()
         var removedRightIV = rightIVs.pop();
-        var removedRightName = GetItemSource(removedRightIV)
+        var removedRightName = GetItemSource(removedRightIV);
 
-        const leftNode = new Node(leftIVs, removedRightName, "female");
-        const rightNode = new Node(rightIVs, removedLeftName);
+        var leftNode, rightNode;
+
+        if(leftIVs.length <= 1){
+            const bestPriceSide = GetBestPrice(removedLeftIV, removedRightIV);
+
+            switch(bestPriceSide){
+                case "left":
+                    leftNode = new Node(leftIVs, removedRightName, "female");
+                    rightNode = new Node(rightIVs, removedLeftName);
+                break;
+
+                case "right":
+                    leftNode = new Node(leftIVs, removedRightName);
+                    rightNode = new Node(rightIVs, removedLeftName, "female");
+                break;
+            }
+        } else {
+            leftNode = new Node(leftIVs, removedRightName, "female");
+            rightNode = new Node(rightIVs, removedLeftName);
+        }
         
         node.children.push(leftNode)
         node.children.push(rightNode)
@@ -186,6 +293,42 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         return itemSrc;
+    }
+
+    function GetBestPrice(left, right){
+        const f = femaleCosts, 
+              m = maleCosts;
+
+        if (left == "Nature") return "right";
+        else if(right == "Nature") return "left";
+
+        const bestPriceLeft = GetPriceSide(left),
+              bestPriceRight = GetPriceSide(right);
+
+        if(bestPriceLeft == bestPriceRight){
+            if(bestPriceLeft == "F" && bestPriceRight == "F"){
+                const femaleBestPrice = GetPriceSide("", f.costs[left], f.costs[right]);
+
+                // First value;
+                if(femaleBestPrice == "F") return "left";
+                else return "right";
+            } else {
+                const maleBestPrice = GetPriceSide("", m.costs[left], m.costs[right]);
+
+                // First value;
+                if(maleBestPrice == "F") return "left";
+                else return "right";
+            }
+        } else if(bestPriceLeft == "F"){
+            return "left";
+        } else if(bestPriceRight == "F"){
+            return "right";
+        }
+
+        function GetPriceSide(IV, F=f.costs[IV], M=m.costs[IV]){
+            if(F <= M) return "F"
+            else return "M";
+        }
     }
 
     function PopulateTree(node, parentElement) {
@@ -247,65 +390,7 @@ document.addEventListener("DOMContentLoaded", function() {
         battlePointBracesAvailableToBuy = Math.floor(battlePointsAvailable / bracesBPCost);
     }
 
-    var femaleCosts = new Breeders(),
-        maleCosts = new Breeders();
-
-    const breedersTable = document.getElementById("breeders-prices").querySelectorAll("tr");
-
-    function ExtractBreedersCosts(){
-        for(var i = 1; i < breedersTable.length - 1; i++){
-            const row = breedersTable[i],
-                  IVType = row.querySelector("th").textContent,
-                  inputs = row.querySelectorAll("input");
-
-            // Female Breeder Data;
-            const femalePrice = inputs[0];
-            AddBreederData(femaleCosts, femalePrice, IVType);
-
-            const malePrice = inputs[1];
-            AddBreederData(maleCosts, malePrice, IVType);
-            
-        }
-
-        function AddBreederData(breederData, input, IVType){
-            switch(IVType){
-                case "Nat":
-                    breederData.nat = Number(input.value);
-                break;
-
-                case "HP":
-                    breederData.hp = Number(input.value);
-                break;
-
-                case "Atk":
-                    breederData.atk = Number(input.value);
-                break;
-
-                case "Def":
-                    breederData.def = Number(input.value);
-                break;
-
-                case "Sp.Atk":
-                    breederData.spatk = Number(input.value);
-                break;
-
-                case "Sp.Def":
-                    breederData.spdef = Number(input.value);
-                break;
-
-                case "Spd":
-                    breederData.spd = Number(input.value);
-                break;
-
-                case "0x31":
-                    breederData.IV0x31 = Number(input.value);
-                break;
-            }
-        }
-    }
-
     function SetTotalPrices(){
-        ExtractBreedersCosts();
         ExtractEverstonePrice();
         ExtractBattlePointsAvailable();
 
