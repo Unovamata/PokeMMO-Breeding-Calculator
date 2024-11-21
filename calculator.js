@@ -334,9 +334,10 @@ document.addEventListener("DOMContentLoaded", function() {
     function PopulateTree(node, parentElement) {
         // Create a new <li> for the current node
         const li = document.createElement("li");
+        li.classList.add("branch");
     
         // Create a div for the node's value
-        const div = node.Graph();
+        const div = node.Graph(li);
         li.appendChild(div);
     
         // If the node has children, create a <ul> for them

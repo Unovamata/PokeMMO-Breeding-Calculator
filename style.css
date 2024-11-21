@@ -251,6 +251,8 @@ input {
 
 input[type=checkbox] {
     cursor: pointer;
+    width: 16px;
+    height: 16px;
 }
 
 .smaller-input {
@@ -415,6 +417,29 @@ input[type=checkbox] {
 :root {
     --gradient-opacity: 0.8; /* Adjust this value as needed (0 to 1) */
     --percentage: 90%;
+}
+
+.branch-box {
+    animation: to-greyscale 0.5s ease backwards;
+}
+
+.branch-check {
+    position: absolute;
+    transform: translate(-80%, -70%);
+    z-index: 1;
+}
+
+.grayscale-filter {
+    animation: to-greyscale 0.5s ease forwards;
+}
+
+@keyframes to-greyscale {
+    from {
+        filter: none;
+    }
+    to {
+        filter: grayscale(100%) brightness(30%);
+    }
 }
 
 .box {

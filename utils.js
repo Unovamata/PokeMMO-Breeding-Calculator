@@ -9,7 +9,7 @@ class Node {
         this.value = value;
         this.children = [];
         this.item = item;
-        this.gender = gender
+        this.gender = gender;
     }
 
     Count(){
@@ -21,10 +21,45 @@ class Node {
 
         return count
     }
-        
 
-    Graph(){
+    Graph(li = undefined){
         const div = document.createElement("div");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.classList.add("branch-check")
+
+        checkbox.addEventListener("change", function(){
+            const childrenLis = div.parentElement.querySelectorAll("li");
+
+            const isChecked = checkbox.checked;
+
+            if(isChecked){
+                li.classList.add('grayscale-filter');
+
+                UpdateInputFields(true);
+            } else {
+                li.classList.remove('grayscale-filter');
+
+                UpdateInputFields(false);
+            }
+
+            function UpdateInputFields(isDisabled=false){
+                childrenLis.forEach(function(li){
+                    li.classList.remove('grayscale-filter');
+                    
+                    const input = li.querySelector("input");
+
+                    console.log(input);
+
+                    input.checked = false;
+                    input.disabled = isDisabled;
+                });
+            }
+        });
+
+        div.appendChild(checkbox);
+
         const IVs = this.value;
 
         CreateItemsAndIVCounter(div, this.gender, IVs, this.item);
