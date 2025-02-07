@@ -69,9 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
           zoomOutButton = document.getElementById("zoom-out"),
           zoomLevelText = document.getElementById("zoom-level");
 
+    const maxZoom = 5;
     var zoomFactor = 0;
 
     zoomInButton.addEventListener("click", function(){
+        if(zoomFactor >= maxZoom) return;
+
         zoomFactor += 1;
 
         zoomLevelText.textContent = `${100 + (10 * zoomFactor)}%`;
@@ -80,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     zoomOutButton.addEventListener("click", function(){
+        if(zoomFactor <= -maxZoom) return;
+
         zoomFactor -= 1;
 
         zoomLevelText.textContent = `${100 + (10 * zoomFactor)}%`;

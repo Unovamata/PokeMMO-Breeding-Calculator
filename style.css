@@ -99,7 +99,7 @@ body {
     position: fixed;
     right: 5px;
     bottom: -5px;
-    width: 8% !important;
+    width: auto !important;
     background: rgba(58, 62, 66, 0.7);
 }
 
