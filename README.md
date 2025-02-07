@@ -12,3 +12,41 @@
 <a href="#-license"><img src="https://camo.githubusercontent.com/e068aab9ad54f8abd594ba95159ea67f28d35e0a55fca906278ad5d1be6c4c99/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f667265655f666f725f6e6f6e5f636f6d6d65726369616c5f7573652d627269676874677265656e" alt="Free" data-canonical-src="https://img.shields.io/badge/free_for_non_commercial_use-brightgreen" style="max-width: 100%;"></a>
 </p>
 
+# PokéMMO Breeding Calculator
+
+**[The PokéMMO Breeding Calculator](https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator)** is a browser utility designed for the simplification of the process of breeding in PokéMMO by using a tree structure to detail the steps required for a breed with the desired parameters. The PokéMMO Breeding Calculator allocates breeding costs, items to buy, items already on the player's inventory, market prices, and breed total price.
+
+- **Breed Mapping:** Click checkboxes in the "Stats to Breed" tab to select the IVs to pass to your breed. After clicking the "Calculate" button, the calculator will generate a visual map of all the combinations necessary for your desired breed.
+- **Optimal Cost Allocation:** The calculator will maximize profit by picking the cheapest breeders based on market prices inputted in the "Breeders Prices" tab.
+- **Battle Point Usage:** The tool will utilize battle points to buy braces to minimize investment and maximize profit while also calculating the amount of Battle Points spend of a specific breed if desired.
+- **Everstone Pricing:** The utility can calculate for variable everstone prices by inputting the current everstone market price on its respective field.
+- **Items Already Owned**: The calculator will consume items already in the user's inventory if any. Also, it will take these into account when calculating items to buy for the final breed.
+- **Toggle Breed Map Branches:** By clicking the checkboxes at the top of breeders you can deactivate nodes or entire branches to better organize your breeding process.
+- **Zoom:** You can zoom-in or zoom-out based on the size of your Breeding Map to better visualize the steps needed for an eventual breed.
+
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator/main/img/screenshot.png" style="max-width: 50%; max-height: 50%"  />
+</p>
+
+# Table of Contents
+
+* [How to Use](#how-to-use)
+* [Features](#features)
+* [Contact](#contact)
+
+# How to Use
+
+- Navigate to the **[The PokéMMO Breeding Calculator](https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator)** Github Page and wait for the page to load.
+
+# Features
+
+- Flexible breeding visualization.
+- Easy usage & interface.
+- Mindful of player's already acquired items.
+- Deactivate nodes or branches to simplify the breeding process.
+- Modify prices based on market prices.
+
+# Contact
+
+You can contact me in Discord as ZenAkiSen or using Rhombusoft's server invite <a href="https://discord.com/invite/QYtFgfactF"><img src="https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white" alt="Discord" style="max-width: 100%;"></a>.
