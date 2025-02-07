@@ -26,7 +26,7 @@
 
 <br>
 <p align="center">
-  <img src="img/screenshot.png" style="max-width: 50%; max-height: 50%"  />
+  <img src="https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator/refs/heads/main/img/screenshot.png" style="max-width: 50%; max-height: 50%"  />
 </p>
 
 # Table of Contents
