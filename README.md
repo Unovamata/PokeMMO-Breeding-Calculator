@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://unovamata.github.io/PokeMMO-Breeding-Calculator//main/img/Logo HQ.png" />
+  <img src="img/Logo HQ.png" />
 </p>
 
 <p align="center">
@@ -26,7 +26,7 @@
 
 <br>
 <p align="center">
-  <img src="https://unovamata.github.io/PokeMMO-Breeding-Calculator//main/img/screenshot.png" style="max-width: 50%; max-height: 50%"  />
+  <img src="img/screenshot.png" style="max-width: 50%; max-height: 50%"  />
 </p>
 
 # Table of Contents
