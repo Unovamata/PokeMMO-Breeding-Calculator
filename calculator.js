@@ -1,3 +1,5 @@
+var totalBreedersPrice = 0;
+
 var bracesPrices = 10000,
     bracesToBuy = [0, 0, 0, 0, 0, 0];
 
@@ -314,12 +316,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Nodes are inverted, so we return the opposite side as the cheapest;
         if(LeftToRightCost < RightToLeftCost){
+            totalBreedersPrice += LeftToRightCost;
+
             return "right";
         } else if (RightToLeftCost < LeftToRightCost){
-            return "left";
-        } else {
+            totalBreedersPrice += RightToLeftCost;
+
             return "left";
         }
+
+        totalBreedersPrice += LeftToRightCost;
+
+        return "left";
     }
 
     function PopulateTree(node, parentElement) {
@@ -433,6 +441,8 @@ document.addEventListener("DOMContentLoaded", function() {
         var pokeballsMissing = Clamp(bredChildren - pokeballsHeld, 0);
         pokeballsTotal = pokeballPrice * pokeballsMissing;
 
+        breedersTotalInput.value = totalBreedersPrice;
+
         everstonesTotalInput.value = everstonesTotal;
         bracesTotalInput.value = bracesTotal;
         pokeballsTotalInput.value = pokeballsTotal;
@@ -451,6 +461,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         battlePointsTotalInput.value = bracesBPCost * battlePointBracesPurchased;
 
-        breedingTotalInput.value = everstonesTotal + bracesTotal + gendersSelectionsTotal + pokeballsTotal;
+        breedingTotalInput.value = totalBreedersPrice + everstonesTotal + bracesTotal + gendersSelectionsTotal + pokeballsTotal;
     }
 });
