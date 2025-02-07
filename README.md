@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator/main/img/Logo HQ.png" />
+  <img src="https://unovamata.github.io/PokeMMO-Breeding-Calculator//main/img/Logo HQ.png" />
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 # PokéMMO Breeding Calculator
 
-**[The PokéMMO Breeding Calculator](https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator)** is a browser utility designed for the simplification of the process of breeding in PokéMMO by using a tree structure to detail the steps required for a breed with the desired parameters. The PokéMMO Breeding Calculator allocates breeding costs, items to buy, items already on the player's inventory, market prices, and breed total price.
+**[The PokéMMO Breeding Calculator](https://unovamata.github.io/PokeMMO-Breeding-Calculator/)** is a browser utility designed for the simplification of the process of breeding in PokéMMO by using a tree structure to detail the steps required for a breed with the desired parameters. The PokéMMO Breeding Calculator allocates breeding costs, items to buy, items already on the player's inventory, market prices, and breed total price.
 
 - **Breed Mapping:** Click checkboxes in the "Stats to Breed" tab to select the IVs to pass to your breed. After clicking the "Calculate" button, the calculator will generate a visual map of all the combinations necessary for your desired breed.
 - **Optimal Cost Allocation:** The calculator will maximize profit by picking the cheapest breeders based on market prices inputted in the "Breeders Prices" tab.
@@ -26,7 +26,7 @@
 
 <br>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator/main/img/screenshot.png" style="max-width: 50%; max-height: 50%"  />
+  <img src="https://unovamata.github.io/PokeMMO-Breeding-Calculator//main/img/screenshot.png" style="max-width: 50%; max-height: 50%"  />
 </p>
 
 # Table of Contents
@@ -37,7 +37,7 @@
 
 # How to Use
 
-- Navigate to the **[The PokéMMO Breeding Calculator](https://raw.githubusercontent.com/Unovamata/PokeMMO-Breeding-Calculator)** Github Page and wait for the page to load.
+- Navigate to the **[The PokéMMO Breeding Calculator](https://unovamata.github.io/PokeMMO-Breeding-Calculator/)** Github Page and wait for the page to load.
 
 # Features
 
