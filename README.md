@@ -49,4 +49,4 @@
 
 # Contact
 
-You can contact me in Discord as ZenAkiSen or using Rhombusoft's server invite <a href="https://discord.com/invite/QYtFgfactF"><img src="https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white" alt="Discord" style="max-width: 100%;"></a>.
+You can contact me in Discord as ZenAkiSen or using Rhombusoft's server invite! <a href="https://discord.com/invite/QYtFgfactF"><img src="https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white" alt="Discord" style="max-width: 100%;"></a>
