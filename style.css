@@ -416,7 +416,7 @@ input[type=checkbox] {
 
 :root {
     --gradient-opacity: 0.8; /* Adjust this value as needed (0 to 1) */
-    --percentage: 90%;
+    --percentage: 100%;
 }
 
 .branch-box {

@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function ShowTotalResultsScreen(){
         HideTab(breedersMenu, breedersButton);
         HideTab(powersMenu, powersButton);
-        //HideTab(settingsMenu, settingsButton);
         SelectTab(pricesMenu, pricesButton);
+        //HideTab(settingsMenu, settingsButton);
     }
     
     const calculateButton = document.getElementById("calculate"),
@@ -129,8 +129,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const malePrice = inputs[1];
             AddBreederData(maleCosts, malePrice, IVType);
         }
-
-        console.log(femaleCosts, maleCosts);
 
         function AddBreederData(breederData, input, IVType){
             switch(IVType){
@@ -229,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var leftNode, rightNode;
 
         if(leftIVs.length <= 1){
-            const bestPriceSide = GetBestPrice(removedLeftIV, removedRightIV);
+            const bestPriceSide = GetBestPrice(removedLeftIV, removedRightIV);;
 
             switch(bestPriceSide){
                 case "left":
@@ -301,38 +299,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function GetBestPrice(left, right){
-        const f = femaleCosts, 
-              m = maleCosts;
+        const f = femaleCosts.costs, 
+              m = maleCosts.costs;
 
-        if (left == "Nature") return "right";
-        else if(right == "Nature") return "left";
+        // Female IV Costs;
+        let FIVLeftCost = f[left], FIVRightCost = f[right]; 
 
-        const bestPriceLeft = GetPriceSide(left),
-              bestPriceRight = GetPriceSide(right);
+        // Male IV Costs;
+        let MIVLeftCost = m[left], MIVRightCost = m[right];
 
-        if(bestPriceLeft == bestPriceRight){
-            if(bestPriceLeft == "F" && bestPriceRight == "F"){
-                const femaleBestPrice = GetPriceSide("", f.costs[left], f.costs[right]);
+        // Sum of costs;
+        let LeftToRightCost = FIVLeftCost + MIVRightCost,
+            RightToLeftCost = FIVRightCost + MIVLeftCost;
 
-                // First value;
-                if(femaleBestPrice == "F") return "left";
-                else return "right";
-            } else {
-                const maleBestPrice = GetPriceSide("", m.costs[left], m.costs[right]);
-
-                // First value;
-                if(maleBestPrice == "F") return "left";
-                else return "right";
-            }
-        } else if(bestPriceLeft == "F"){
-            return "left";
-        } else if(bestPriceRight == "F"){
+        // Nodes are inverted, so we return the opposite side as the cheapest;
+        if(LeftToRightCost < RightToLeftCost){
             return "right";
-        }
-
-        function GetPriceSide(IV, F=f.costs[IV], M=m.costs[IV]){
-            if(F <= M) return "F"
-            else return "M";
+        } else if (RightToLeftCost < LeftToRightCost){
+            return "left";
+        } else {
+            return "left";
         }
     }
 
@@ -368,7 +354,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const itemsInInventory = document.getElementById("items-in-inventory").querySelectorAll("input");
 
-    const everstonesTotalInput = document.getElementById("everstones-total-price"),
+    const breedersTotalInput = document.getElementById("breeders-total-price"),
+          everstonesTotalInput = document.getElementById("everstones-total-price"),
           bracesTotalInput = document.getElementById("braces-total-price"),
           breedingTotalInput = document.getElementById("breeding-total-price"),
           genderSelectionTotalInput = document.getElementById("gender-selection-total-price"),
