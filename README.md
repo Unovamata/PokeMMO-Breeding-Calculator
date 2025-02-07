@@ -18,11 +18,11 @@
 
 - **Breed Mapping:** Click checkboxes in the "Stats to Breed" tab to select the IVs to pass to your breed. After clicking the "Calculate" button, the calculator will generate a visual map of all the combinations necessary for your desired breed.
 - **Optimal Cost Allocation:** The calculator will maximize profit by picking the cheapest breeders based on market prices inputted in the "Breeders Prices" tab.
-- **Battle Point Usage:** The tool will utilize battle points to buy braces to minimize investment and maximize profit while also calculating the amount of Battle Points spend of a specific breed if desired.
-- **Everstone Pricing:** The utility can calculate for variable everstone prices by inputting the current everstone market price on its respective field.
-- **Items Already Owned**: The calculator will consume items already in the user's inventory if any. Also, it will take these into account when calculating items to buy for the final breed.
-- **Toggle Breed Map Branches:** By clicking the checkboxes at the top of breeders you can deactivate nodes or entire branches to better organize your breeding process.
-- **Zoom:** You can zoom-in or zoom-out based on the size of your Breeding Map to better visualize the steps needed for an eventual breed.
+- **Battle Point Usage:** The tool will use battle points to buy braces to minimize investment and maximize profit while also calculating the amount of Battle Points spent on a specific breed if desired.
+- **Everstone Pricing:** The utility can calculate variable Everstone prices by inputting the current Everstone market price on its respective field.
+- **Items Already Owned**: The calculator will consume items already in the user's inventory, if any, using these when calculating items to buy for the final breed.
+- **Toggle Breed Map Branches:** Deactivate nodes or entire branches by clicking the checkboxes at the top of breeder nodes to organize your breeding process.
+- **Zoom:** You can zoom in or zoom out based on the size of your Breeding Map to better visualize the steps needed for an eventual breed.
 
 <br>
 <p align="center">
