@@ -38,6 +38,13 @@
 # How to Use
 
 - Navigate to the **[The PokéMMO Breeding Calculator](https://unovamata.github.io/PokeMMO-Breeding-Calculator/)** Github Page and wait for the page to load.
+- Configure Breeder market prices in the "Breeders Prices" tab, you can recognize this tab by the egg icon.
+- Afterwards, go to the tab with a Brace icon and select the stats your resulting Pokémon will have by ticking the respective checkboxes.
+- Introduce the breeding items you have in your inventory in the GUI.
+- **(Optional)** Input your Battle Points if you want to spend these for buying breeding related items.
+- Set the Everstone market price.
+- Click on the **"Calculate"** button and the website will redirect you to the costs tab.
+- After that, you will see how much you need to spend to breed this specific Pokémon, while also visualizing the items to purchase and an informative breeding tree of all the combinations needed to be made for this breed.
 
 # Features
 
