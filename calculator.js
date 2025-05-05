@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
         pokeballsNeeded = 0;
         femaleCosts = new Breeders(),
         maleCosts = new Breeders();
+        battlePointBracesPurchased = 0;
     }
 
     var femaleCosts = new Breeders(),
