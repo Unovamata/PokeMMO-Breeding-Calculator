@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const IVsToPass = document.getElementById("IVs").querySelectorAll("input");
 
     function ResetData(){
+        totalBreedersPrice = 0;
         everstonesToBuy = 0;
         bracesToBuy = [0, 0, 0, 0, 0, 0];
         bredChildren = 0;
